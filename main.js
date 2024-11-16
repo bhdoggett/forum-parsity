@@ -1,25 +1,19 @@
 const postButton = document.getElementById("submit");
 
-const allPosts = [];
+const posts = [];
 
-postButton.addEventListener("click", function () {
+const addPost = () => {
   const person = document.getElementById("name").value;
   const message = document.getElementById("message").value;
   const postsDiv = document.getElementsByClassName("posts")[0];
-
   const postTime = Date.now();
+
   const postOwner = document.createElement("p");
   postOwner.style.fontWeight = "500";
   postOwner.innerHTML = person;
 
   const postMessage = document.createElement("p");
   postMessage.innerHTML = message;
-
-  allPosts.push({
-    time: postTime,
-    postOwner: postOwner.innerHTML,
-    postMessage: postMessage.innerHTML,
-  });
 
   const upVote = document.createElement("button");
   upVote.innerHTML = "This is awesome";
@@ -37,8 +31,11 @@ postButton.addEventListener("click", function () {
   deleteButton.style.margin = "5px";
 
   const newPost = document.createElement("div");
-  newPost.appendChild;
   newPost.style.margin = "20px";
+  newPost.setAttribute("class", "post");
+  newPost.setAttribute("data-votes", 0);
+
+  // const voteUp = function()
 
   newPost.appendChild(postMessage);
   newPost.appendChild(postOwner);
@@ -51,4 +48,6 @@ postButton.addEventListener("click", function () {
   });
 
   postsDiv.appendChild(newPost);
-});
+};
+
+postButton.addEventListener("click", addPost);
